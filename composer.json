@@ -1,0 +1,8 @@
+{
+    "name": "pixxel/dbal",
+    "description": "A simple PDO wrapper / DBAL, with easier syntax than pdo",
+    "require": {
+        "php": ">= 7.4"
+    },
+    "license": "MIT"
+}
