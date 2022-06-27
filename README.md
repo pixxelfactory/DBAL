@@ -3,13 +3,21 @@
 This is a simple wrapper for PDO, since we hate its syntax and decided to sugar it up a bit with a simple class.
 Maybe we extend it in the future, but for now it serves its intended purpose (also, it's mysql only for now, but that will change).
 
-## A simple example to read from a table called pages(with manual installation / no composer):
+### INSTALLATION
+#### A simple example to read from a table called pages(with manual installation / no composer):
 
     require_once(__DIR__.'/Pixxel/DBAL.php');
   
     $dbal = new \Pixxel\DBAL('dbusername', 'dbpassword', 'dbname');
     $pages = $dbal->read('select * from `pages` limit 20 order by `id` desc');
   
+#### The same example installed with composer:
+
+    require_once(__DIR__.'/vendor/autoload.php');
+    
+    $dbal = new \Pixxel\DBAL('dbusername', 'dbpassword', 'dbname');
+    $pages = $dbal->read('select * from `pages` limit 20 order by `id` desc');
+
 As you can see, its mostly normal sql, but without all the things around no one can remember like pdo connection strings and stuff with statements.
 Note that we always use prepared statements, so make sure that you use its biggest advantage, e.g. pass potentially vulnerable content as parameters:
 
