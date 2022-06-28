@@ -34,7 +34,7 @@ Here is a brief summary of what you can do with this class:
 
     $pages = $dbal->read('select * from `pages` limit 20 order by `id` desc');
     
-3.) Insert or update data:
+3.) Insert, update or delete data:
 
     $dbal->save('insert into `pages` (`title`, `content`) values (:title, :content)', [':title' => 'New page', ':content' => '<h1>Title</h1><p>My content</p>']);
     
