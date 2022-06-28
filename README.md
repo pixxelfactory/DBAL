@@ -11,7 +11,12 @@ Maybe we extend it in the future, but for now it serves its intended purpose (al
     $dbal = new \Pixxel\DBAL('dbusername', 'dbpassword', 'dbname');
     $pages = $dbal->read('select * from `pages` limit 20 order by `id` desc');
   
-#### The same example installed with composer:
+#### The same example install and usage with composer:
+
+From the terminal (in the desired directory):
+    composer require pixxel/dbal
+    
+Then, in that directory, create a php file and use this code:
 
     require_once(__DIR__.'/vendor/autoload.php');
     
