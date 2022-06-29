@@ -40,6 +40,15 @@ class DBAL
     }
 
     /**
+     * Get the raw pdo object
+     * @return object
+     */
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
+    /**
      * Perform a query and return true or false, depending on successful or not
      * @param string $query
      * @param  array $parameters
@@ -86,6 +95,19 @@ class DBAL
         }
 
         return $return;
+    }
+
+    /**
+     * Perform a select query and transform result into a php-object (return the first row only)
+     * @param string $query
+     * @param array $parameters
+     * @return object|bool
+     */
+    public function readSingle($query, $parameters = []): object|bool
+    {
+        $result = $this->read($query, $parameters);
+
+        return !empty($result) ? $result[0] : false;
     }
 
     /**
