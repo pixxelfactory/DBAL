@@ -37,7 +37,8 @@ Here is a brief summary of what you can do with this class:
     
 2.) Select data:
 
-    $pages = $dbal->read('select * from `pages` limit 20 order by `id` desc');
+    $pages = $dbal->read('select * from `pages` limit 20 order by `id` desc');          // Return array containing objects
+    $pages = $dbal->readSingle('select * from `pages` limit 1 order by `id` desc');     // Return a single object, regardless of how many rows the query returns
     
 3.) Insert, update or delete data:
 
