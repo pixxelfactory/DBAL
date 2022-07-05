@@ -1,4 +1,4 @@
-# Pixxel DBAL
+# Pixxel Dbal
 
 This is a simple wrapper for PDO, since we hate its syntax and decided to sugar it up a bit with a simple class.
 Maybe we extend it in the future, but for now it serves its intended purpose (also, it's mysql only for now, but that will change).
@@ -6,9 +6,9 @@ Maybe we extend it in the future, but for now it serves its intended purpose (al
 ### INSTALLATION
 #### A simple example to read from a table called pages(with manual installation / no composer):
 
-    require_once(__DIR__.'/Pixxel/DBAL.php');
+    require_once(__DIR__.'/Pixxel/Dbal.php');
   
-    $dbal = new \Pixxel\DBAL('dbusername', 'dbpassword', 'dbname');
+    $dbal = new \Pixxel\Dbal('dbusername', 'dbpassword', 'dbname');
     $pages = $dbal->read('select * from `pages` limit 20 order by `id` desc');
   
 #### The same example install and usage with composer:
@@ -20,7 +20,7 @@ Then, in that directory, create a php file and use this code:
 
     require_once(__DIR__.'/vendor/autoload.php');
     
-    $dbal = new \Pixxel\DBAL('dbusername', 'dbpassword', 'dbname');
+    $dbal = new \Pixxel\Dbal('dbusername', 'dbpassword', 'dbname');
     $pages = $dbal->read('select * from `pages` limit 20 order by `id` desc');
 
 As you can see, its mostly normal sql, but without all the things around no one can remember like pdo connection strings and stuff with statements.
@@ -33,7 +33,7 @@ Here is a brief summary of what you can do with this class:
 
 1.) Create a PDO connection:
 
-    $dbal = new \Pixxel\DBAL('dbusername', 'dbpassword', 'dbname');
+    $dbal = new \Pixxel\Dbal('dbusername', 'dbpassword', 'dbname');
     
 2.) Select data:
 

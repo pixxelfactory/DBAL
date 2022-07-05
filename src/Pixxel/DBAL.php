@@ -1,4 +1,5 @@
 <?php
+
 namespace Pixxel;
 
 /**
@@ -7,7 +8,7 @@ namespace Pixxel;
  * @license MIT
  * @author Pixxelfactory
  */
-class DBAL
+class Dbal
 {
     protected $username;
     protected $password;
@@ -16,7 +17,6 @@ class DBAL
     protected $pdo;
     protected $lastQuery;
     protected $lastError;
-
     public function __construct($username, $password, $database, $host = 'localhost')
     {
         $this->username = $username;
@@ -25,16 +25,11 @@ class DBAL
         $this->host = $host;
         $this->lastQuery = false;
         $this->lastError = false;
-
-        // I really hate exceptions
-        try
-        {
-            $this->pdo = new \PDO('mysql:host=localhost;dbname='.$database, $username, $password, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
-        }
-        catch(\PDOException $e)
-        {
+    // I really hate exceptions
+        try {
+            $this->pdo = new \PDO('mysql:host=localhost;dbname=' . $database, $username, $password, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
+        } catch (\PDOException $e) {
             $this->lastError = $e;
-
             return false;
         }
     }
@@ -58,14 +53,11 @@ class DBAL
     {
         $stmt = $this->pdo->prepare($query);
         $this->lastQuery = $query;
-        
-        if(!$stmt->execute($parameters))
-        {
+        if (!$stmt->execute($parameters)) {
             $this->error = $stmt->errorInfo();
-    
             return false;
         }
-        
+
         return true;
     }
 
@@ -79,18 +71,13 @@ class DBAL
     {
         $stmt = $this->pdo->prepare($query);
         $this->lastQuery = $query;
-        
-        if(!$stmt->execute($parameters))
-        {
+        if (!$stmt->execute($parameters)) {
             $this->error = $stmt->errorInfo();
-
             return false;
         }
 
         $return = [];
-
-        while($row = $stmt->fetchObject())
-        {
+        while ($row = $stmt->fetchObject()) {
             $return[] = $row;
         }
 
@@ -106,7 +93,6 @@ class DBAL
     public function readSingle($query, $parameters = []): object|bool
     {
         $result = $this->read($query, $parameters);
-
         return !empty($result) ? $result[0] : false;
     }
 
