@@ -142,6 +142,22 @@ class Dbal
     }
 
     /**
+     * Checks if a table really exists in the current database
+     * @param array $tables
+     * @return bool
+     */
+    public function tablesExists(array $tables): bool
+    {
+        $existingTables = $this->getTables();
+
+        if(count(array_intersect($tables, $existingTables)) === count($tables)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Check if a column exists / is valid in a certain table
      * @param string $column
      * @param string $table
@@ -151,11 +167,28 @@ class Dbal
     {
         $existingColumns = $this->getColumns($table);
 
-        if(!in_array($column, $existingColumns)) {
-            return false;
+        if(in_array($column, $existingColumns)) {
+            return true;
         }
 
-        return true;
+        return false;
+    }
+
+    /**
+     * Check if multiple columns exist, to prevent querying the db for each single column
+     * @param array $columns
+     * @param string $table
+     * @return bool
+     */
+    public function columnsExist(array $columns, string $table): bool
+    {
+        $existingColumns = $this->getColumns($table);
+
+        if(count(array_intersect($columns, $existingColumns)) === count($columns)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
