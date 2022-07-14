@@ -13,5 +13,8 @@
         "psr-4": {
             "Pixxel\\": "src/Pixxel/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     }
 }
